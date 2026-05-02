@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopsy</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginPage" class="center">
+  <div class="card">
+    <h2>Login</h2>
+    <input id="loginEmail" placeholder="Email or Mobile">
+    <input id="loginPassword" type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <p onclick="showSignup()">Create Account</p>
+  </div>
+</div>
+
+<!-- SIGNUP -->
+<div id="signupPage" class="center hidden">
+  <div class="card">
+    <h2>Signup</h2>
+    <input id="firstName" placeholder="First Name">
+    <input id="lastName" placeholder="Last Name">
+    <input id="signupEmail" placeholder="Email">
+    <input id="signupPassword" type="password" placeholder="Create Password">
+    <button onclick="signup()">Signup</button>
+    <p onclick="showLogin()">Back to Login</p>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app" class="hidden">
+
+<nav class="navbar">
+
+  <div class="nav-left">
+    <h2>Shopsy</h2>
+  </div>
+
+  <div class="nav-center">
+  <span onclick="showPage('home')">Home</span>
+  <span onclick="showPage('sales')">Sales</span>
+  <span onclick="showPage('purchase')">Purchases</span>
+  <span onclick="showPage('expenses')">Expenses</span>
+</div>
+
+  <div class="nav-right">
+
+  <div class="profile-container">
+    <i class="bx bx-user-circle profile-icon" onclick="toggleProfile()"></i>
+
+    <div id="profileMenu" class="profile-menu hidden">
+      <p onclick="openProfile()">Profile</p>
+      <p onclick="openSettings()">Settings</p>
+      <p onclick="logout()">Logout</p>
+    </div>
+  </div>
+
+</div>
+
+</nav>
+
+<div class="container">
+
+<!--  HOME-->
+<div id="home" class="page">
+
+  <h2>Dashboard</h2>
+
+  <!-- MONTH -->
+  <label style="color:#FFD700;">Select Date:</label>
+  <input type="date" id="datePicker">
+  <div id="calendar"></div>
+
+  <!-- SUMMARY -->
+  <div class="summary">
+    <div>Sales: ₹<span id="totalSales">0</span></div>
+    <div>Purchase: ₹<span id="totalPurchase">0</span></div>
+    <div>Expense: ₹<span id="totalExpense">0</span></div>
+    <div>Profit: ₹<span id="totalProfit">0</span></div>
+  </div>
+
+  <!-- GRAPH -->
+  <canvas id="chart"></canvas>
+
+  <!-- INSIGHTS -->
+  <h3 id="insights"></h3>
+
+</div>
+
+<!-- SALES -->
+<div id="sales" class="page">
+  <h2>Sales</h2>
+
+  <input id="saleItem" placeholder="Item">
+  <input id="saleQty" placeholder="Qty">
+  <input id="saleAmount" placeholder="Amount">
+  <button onclick="addSale()">Add</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Qty</th>
+        <th>Amount</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody id="salesTable"></tbody>
+  </table>
+
+  <h3>Total Sales: ₹<span id="salesTotal">0</span></h3>
+</div>
+
+<!-- PURCHASE -->
+<div id="purchase" class="page hidden">
+  <h2>Purchases</h2>
+
+  <input id="purchaseItem" placeholder="Item">
+  <input id="purchaseQty" placeholder="Qty">
+  <input id="purchaseAmount" placeholder="Price">
+  <button onclick="addPurchase()">Add</button>
+
+  <table>
+    <tr>
+    <th>Type</th>
+    <th>Qty</th>
+    <th>Price</th>
+    <th>Total</th>
+    <tbody id="purchaseTable"></tbody>
+  </table>
+
+  <h3>Total Purchases: ₹<span id="purchaseTotal">0</span></h3>
+</div>
+
+<!-- EXPENSE -->
+<div id="expenses" class="page hidden">
+  <h2>Expenses</h2>
+
+  <input id="expenseType" placeholder="Type">
+  <input id="expenseAmount" placeholder="Amount">
+  <button onclick="addExpense()">Add</button>
+
+  <table>
+    <th>Type</th>
+    <th>Price</th>
+    <tbody id="expenseTable"></tbody>
+  </table>
+
+  <h3>Total: ₹<span id="expenseTotal">0</span></h3>
+</div>
+
+
+</div>
+
+<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+</body>
+</html>
